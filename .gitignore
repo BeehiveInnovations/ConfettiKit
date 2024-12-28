@@ -2,3 +2,6 @@
 /.swiftpm
 /.build
 xcuserdata
+DerivedData
+.DerivedData
+.DerivedData.noindex
