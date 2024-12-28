@@ -35,7 +35,11 @@ public final class ConfettiView: UIView {
     }
   }
   
-  public func shoot(mode: ConfettiMode = .topToBottom, birthRate1: Float? = nil, birthRate2: Float? = nil, updatedImages: [ConfettiImage]? = nil) {
+  public func shoot(mode: ConfettiMode = .topToBottom,
+                    birthRate1: Float? = nil,
+                    birthRate2: Float? = nil,
+                    updatedImages: [ConfettiImage]? = nil,
+                    defaultScale: CGFloat = 1.0) {
     let effectiveBirthRate1 = birthRate1 ?? self.birthRate1
     let effectiveBirthRate2 = birthRate2 ?? self.birthRate2
     let effectiveImages = updatedImages ?? images
@@ -43,7 +47,8 @@ public final class ConfettiView: UIView {
     let view = ConfettiShotView(mode: mode,
                                 images: effectiveImages,
                                 birthRate1: effectiveBirthRate1,
-                                birthRate2: effectiveBirthRate2)
+                                birthRate2: effectiveBirthRate2,
+                                defaultScale: defaultScale)
     view.frame = bounds
     addSubview(view)
     let shooting = Shooting(view: view)

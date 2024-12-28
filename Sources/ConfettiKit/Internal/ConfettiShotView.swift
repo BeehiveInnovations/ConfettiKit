@@ -4,10 +4,21 @@ final class ConfettiShotView: UIView {
   private let backgroundLayerView: ConfettiLayerView
   private let foregroundLayerView: ConfettiLayerView
   
-  init(mode: ConfettiMode, images: [ConfettiImage], birthRate1: Float, birthRate2: Float) {
-    backgroundLayerView = ConfettiLayerView(mode: mode, images: images, birthRate: birthRate1, scale: 0.6, speed: 0.95)
-    foregroundLayerView = ConfettiLayerView(mode: mode, images: images, birthRate: birthRate2, scale: 0.8, scaleRange: 0.1)
+  // Add a defaultScale parameter to the initializer
+  init(mode: ConfettiMode,
+       images: [ConfettiImage],
+       birthRate1: Float,
+       birthRate2: Float,
+       defaultScale: CGFloat = 1.0) {
+    // Calculate scales based on defaultScale
+    let backgroundScale = defaultScale * 0.75
+    let foregroundScale = defaultScale * 1.25
+    
+    // Initialize the layer views with the calculated scales
+    backgroundLayerView = ConfettiLayerView(mode: mode, images: images, birthRate: birthRate1, scale: backgroundScale, speed: 0.95)
+    foregroundLayerView = ConfettiLayerView(mode: mode, images: images, birthRate: birthRate2, scale: foregroundScale, scaleRange: defaultScale * 0.1)
     backgroundLayerView.alpha = 0.5
+    
     super.init(frame: .zero)
     addSubview(backgroundLayerView)
     addSubview(foregroundLayerView)
